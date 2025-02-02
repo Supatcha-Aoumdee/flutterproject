@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(home: AirQualityIndex());
     // return MaterialApp(home: SimpleApiCall());
-    //return MaterialApp(home: FormSimple());
+    // return MaterialApp(home: FormSimple());
     // return MaterialApp(home: RegistrationForm());
   }
 }
