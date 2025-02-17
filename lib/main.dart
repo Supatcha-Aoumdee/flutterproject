@@ -1,15 +1,21 @@
 // import 'package:demoproject/bottom_navigation_bar/bottom_navigation_bar.dart';
 // import 'package:demoproject/page_navigation/first_page.dart';
-import 'package:demoproject/api_air_quality_index/air_quality_index.dart';
-import 'package:demoproject/api_test/simple_api_call.dart';
+// import 'package:demoproject/api_air_quality_index/air_quality_index.dart';
+// import 'package:demoproject/api_test/simple_api_call.dart';
+// import 'package:demoproject/firebase_test/fire_store_demo.dart';
+import 'package:demoproject/rest_api/rest_api_product_list.dart';
 import 'package:flutter/material.dart';
 // import 'package:demoproject/page_answer/answer1.dart';
 // import 'package:demoproject/page_answer/answer2.dart';
 // import 'package:demoproject/page_answer/answer3.dart';
 // import 'package:demoproject/page_answer/answer4.dart';
-import 'package:demoproject/form_widget/form_simple.dart';
-import 'package:demoproject/form_widget/registration_form.dart';
-void main() {
+// import 'package:demoproject/form_widget/form_simple.dart';
+// import 'package:demoproject/form_widget/registration_form.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -17,8 +23,10 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context){
-    return MaterialApp(home: AirQualityIndex());
+  Widget build(BuildContext context) {
+    // return const MaterialApp(home: FireStoreDemo());
+    return MaterialApp(home: RestApiProductList());
+    // return MaterialApp(home: AirQualityIndex());
     // return MaterialApp(home: SimpleApiCall());
     // return MaterialApp(home: FormSimple());
     // return MaterialApp(home: RegistrationForm());
