@@ -4,6 +4,11 @@
 // import 'package:demoproject/api_test/simple_api_call.dart';
 // import 'package:demoproject/firebase_test/fire_store_demo.dart';
 // import 'package:demoproject/component/custom_card.dart';
+import 'package:demoproject/animated_container/animated_padding_demo.dart';
+import 'package:demoproject/animated_container/animated_position_demo.dart';
+import 'package:demoproject/animated_container/animated_stack_demo.dart';
+import 'package:demoproject/animated_container/animated_swicher_demo.dart';
+import 'package:demoproject/animated_container/animated_traffic.dart';
 import 'package:demoproject/component/custom_counter.dart';
 import 'package:demoproject/component/profile_card.dart';
 // import 'package:demoproject/rest_api/rest_api_product_list.dart';
@@ -15,60 +20,27 @@ import 'package:flutter/material.dart';
 // import 'package:demoproject/form_widget/form_simple.dart';
 // import 'package:demoproject/form_widget/registration_form.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:demoproject/animated_container/animated.dart';
+import 'package:demoproject/animated_container/animated_opacity_demo.dart';
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  ThemeMode _themeMode = ThemeMode.light;
-
-  // void _toggleTheme() {
-  //   setState(() {
-  //     _themeMode = 
-  //       (_themeMode == ThemeMode.light) ? ThemeMode.dark : ThemeMode.light;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
     // return const MaterialApp(home: FireStoreDemo());
-    return MaterialApp(
-      title: 'ThemeMode Demo',
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.white, 
-        textTheme: const TextTheme(
-            bodyMedium: TextStyle(color: Colors.black)), 
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.deepPurple),
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.blueGrey[900], 
-        textTheme: const TextTheme(
-            bodyMedium: TextStyle(color: Colors.white)),
-        appBarTheme: AppBarTheme(backgroundColor: Colors.grey[800]),
-      ),
-      themeMode: _themeMode,
-
-      home: MyWidget(
-        onThemeToggle: () {
-          setState(() {
-
-            _themeMode = _themeMode == ThemeMode.light
-                ? ThemeMode.dark
-                : ThemeMode.light;
-          });
-        },
-        themeMode: _themeMode,
-      ),
-    );
+    return MaterialApp(home: AnimatedTraffic());
+    // return MaterialApp(home: AnimatedSwicherDemo());
+    // return MaterialApp(home: AnimatePositionDemo());
+    // return MaterialApp(home: AnimatePaddingDemo());
+    // return MaterialApp(home: AnimatedStackDemo());
+    // return MaterialApp(home: AnimatedOpacityDemo());
+    // return MaterialApp(home: Animated());
     // return MaterialApp(home: RestApiProductList());
     // return MaterialApp(home: AirQualityIndex());
     // return MaterialApp(home: SimpleApiCall());
@@ -77,73 +49,62 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class MyWidget extends StatelessWidget {
-  final VoidCallback onThemeToggle;
-  final ThemeMode themeMode;
+// class MyWidget extends StatelessWidget {
+//   final VoidCallback onThemeToggle;
+//   final ThemeMode themeMode;
 
-  const MyWidget({super.key, required this.onThemeToggle, required this.themeMode});
+//   const MyWidget({super.key, required this.onThemeToggle, required this.themeMode});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Widget'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              themeMode == ThemeMode.dark ? Icons.wb_sunny : Icons.nightlight_round,
-            ),
-            onPressed: onThemeToggle, 
-          ),
-        ],
-      ),
-      body: const Center(
-        child: ProfileCard(
-          name: 'Supatcha Aoumdee',
-          position: 'Student',
-          email: 'Aoumdee_s@Silpakorn.edu',
-          phoneNumber: '0971279799',
-          imageUrl: 'assets/profile.jpg',
-          isAsset: true,
-        ),
-      ),
-    );
-  }
-}
-//*******************************************************
-// class MyWidget extends StatefulWidget {
-//   const MyWidget({super.key});
-
-//   @override
-//   State<MyWidget> createState() => _MyWidgetState();
-// }
-
-// class _MyWidgetState extends State<MyWidget> {
 //   @override
 //   Widget build(BuildContext context) {
+//     return MaterialApp(home: RestApiProductList());
 //     return Scaffold(
-//       appBar: AppBar(title: Text('Theme'),centerTitle: true,),
-//       body: Center(
-//         // Corrected this line
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Text(
-//               'Hello World',
-//               style: Theme.of(context).textTheme.bodyMedium,
+//       appBar: AppBar(
+//         title: const Text('Profile Widget'),
+//         centerTitle: true,
+//         actions: [
+//           IconButton(
+//             icon: Icon(
+//               themeMode == ThemeMode.dark ? Icons.wb_sunny : Icons.nightlight_round,
 //             ),
-//             ElevatedButton(
-//               onPressed: () {},
-//               child: const Text("Press Me!"),
-//             ),
-//           ],
+//             onPressed: onThemeToggle, 
+//           ),
+//         ],
+//       ),
+//       body: const Center(
+//         child: ProfileCard(
+//           name: 'Supatcha Aoumdee',
+//           position: 'Student',
+//           email: 'Aoumdee_s@Silpakorn.edu',
+//           phoneNumber: '0971279799',
+//           imageUrl: 'assets/profile.jpg',
+//           isAsset: true,
 //         ),
 //       ),
 //     );
 //   }
 // }
-//******************************************************* */
+// class MyWidget extends StatelessWidget {
+//   const MyWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Custom Widget'),
+//       centerTitle: true,backgroundColor: Colors.blue[100],),
+//       body: const Center(
+//         child: ProfileCard(
+//           name: 'Supatcha Aoumdee',
+//           position: 'Student',
+//           email: 'Aoumdee_s@Silpakorn.edu',
+//           phoneNumber: '0971279799',
+//           imageUrl: 'assets/profile.jpg',
+//           isAsset: true,
+//         ),
+//       ),
+//     );
+//   }
+// }
 // class MyWidget extends StatefulWidget {
 //   const MyWidget({super.key});
 
